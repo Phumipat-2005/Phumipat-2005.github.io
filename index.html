@@ -3,38 +3,304 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Phumipat | Frontend Developer</title>
+  <title>Phumipat Wongdaw | Frontend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background-color: #0d1117;
-      color: #c9d1d9;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #6366f1;
+      --accent: #38bdf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
     }
-    h1 { color: #58a6ff; font-size: 2.5rem; margin-bottom: 12px; }
-    p { color: #8b949e; font-size: 1.1rem; }
-    .status {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 6px 14px;
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 3rem 1.5rem;
+    }
+
+    /* วงแสง Glow สไตล์ Cyber Aesthetic */
+    .glow-bg {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(56, 189, 248, 0.08) 45%, transparent 70%);
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: blur(80px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 2.2rem;
+    }
+
+    /* Status Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.45rem 1rem;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #4ade80;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Hero Text */
+    .hero-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    h1 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    p.subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    /* Section Title */
+    .section-title {
+      align-self: flex-start;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: -1rem;
+      padding-left: 0.25rem;
+    }
+
+    /* Project Card */
+    .project-card {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(16px);
       border-radius: 20px;
-      background: #161b22;
-      border: 1px solid #30363d;
-      font-size: 0.9rem;
-      color: #3fb950;
+      padding: 1.75rem;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.35);
+      box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.25);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-name {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.3rem 0.7rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      color: #cbd5e1;
+    }
+
+    /* Action Buttons */
+    .project-actions {
+      display: flex;
+      gap: 0.85rem;
+      padding-top: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-live {
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    }
+
+    .btn-live:hover {
+      box-shadow: 0 6px 22px rgba(99, 102, 241, 0.55);
+      transform: translateY(-2px);
+    }
+
+    .btn-repo {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-repo:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* Footer Social Links */
+    .links {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .btn-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s ease;
+    }
+
+    .btn-link:hover {
+      color: #ffffff;
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>Hi, I'm Phumipat Wongdaw 👋</h1>
-    <p>A Frontend Developer from Thailand</p>
-    <div class="status">● Portfolio is Under Construction</div>
+  <div class="glow-bg"></div>
+
+  <div class="container">
+    <!-- Status Badge -->
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Portfolio is Under Construction
+    </div>
+
+    <!-- Hero Header -->
+    <div class="hero-header">
+      <h1>Hi, I'm Phumipat Wongdaw 👋</h1>
+      <p class="subtitle">A Frontend Developer from Thailand</p>
+    </div>
+
+    <!-- Section Title -->
+    <span class="section-title">Featured Projects</span>
+
+    <!-- Project Card -->
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-name">🧮 React Calculator</span>
+      </div>
+      <p class="project-desc">A modern interactive calculator web application built with React. Featuring component-driven UI architecture and responsive layout.</p>
+      
+      <div class="tags">
+        <span class="tag">React</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">CSS</span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="project-actions">
+        <a href="https://phumipat-2005.github.io/react-calculator" target="_blank" rel="noopener noreferrer" class="btn btn-live">
+          🌐 Live Demo ↗
+        </a>
+        <a href="https://github.com/Phumipat-2005/react-calculator" target="_blank" rel="noopener noreferrer" class="btn btn-repo">
+          💻 Source Code ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer Links -->
+    <div class="links">
+      <a href="https://github.com/Phumipat-2005" target="_blank" rel="noopener noreferrer" class="btn-link">
+        GitHub Profile ↗
+      </a>
+    </div>
   </div>
 </body>
 </html>
