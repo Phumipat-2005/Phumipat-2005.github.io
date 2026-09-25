@@ -3,19 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Phumipat Wongdaw - Frontend Developer Portfolio" />
   <title>Phumipat Wongdaw | Frontend Developer</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: rgba(255, 255, 255, 0.03);
+      --bg: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.6);
       --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(99, 102, 241, 0.4);
       --primary: #6366f1;
+      --primary-hover: #4f46e5;
       --accent: #38bdf8;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
+      --tag-bg: rgba(255, 255, 255, 0.04);
+      --tag-border: rgba(255, 255, 255, 0.08);
     }
 
     * {
@@ -27,28 +34,30 @@
 
     body {
       background-color: var(--bg);
+      background-image: 
+        radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       position: relative;
       overflow-x: hidden;
-      padding: 3rem 1.5rem;
+      padding: 4rem 1.5rem;
     }
 
-    /* วงแสง Glow สไตล์ Cyber Aesthetic */
+    /* Ambient Glow Background */
     .glow-bg {
       position: absolute;
-      width: 600px;
-      height: 600px;
+      width: 650px;
+      height: 650px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(56, 189, 248, 0.08) 45%, transparent 70%);
-      top: 10%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.16) 0%, rgba(56, 189, 248, 0.06) 50%, transparent 70%);
+      top: -100px;
       left: 50%;
       transform: translateX(-50%);
-      filter: blur(80px);
+      filter: blur(90px);
       z-index: 0;
       pointer-events: none;
     }
@@ -56,27 +65,35 @@
     .container {
       position: relative;
       z-index: 1;
-      max-width: 720px;
+      max-width: 760px;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      gap: 2.2rem;
+      gap: 3rem;
     }
 
-    /* Status Badge */
+    /* Header Section */
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.25rem;
+    }
+
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.55rem;
-      padding: 0.45rem 1rem;
-      background: rgba(34, 197, 94, 0.1);
+      gap: 0.6rem;
+      padding: 0.45rem 1.1rem;
+      background: rgba(34, 197, 94, 0.08);
       border: 1px solid rgba(34, 197, 94, 0.25);
       border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 500;
+      font-size: 0.82rem;
+      font-weight: 600;
       color: #4ade80;
+      backdrop-filter: blur(8px);
     }
 
     .badge-dot {
@@ -85,26 +102,19 @@
       background: #22c55e;
       border-radius: 50%;
       box-shadow: 0 0 10px #22c55e;
-      animation: pulse 2s infinite;
+      animation: pulse 2s infinite ease-in-out;
     }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    /* Hero Text */
-    .hero-header {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
+      50% { opacity: 0.4; transform: scale(0.8); }
     }
 
     h1 {
-      font-size: 2.75rem;
+      font-size: clamp(2.2rem, 5vw, 3rem);
       font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
       background: linear-gradient(135deg, #ffffff 40%, var(--accent) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -112,21 +122,61 @@
 
     p.subtitle {
       color: var(--text-muted);
-      font-size: 1.1rem;
+      font-size: 1.12rem;
       font-weight: 400;
-      line-height: 1.5;
+      line-height: 1.6;
+      max-width: 540px;
     }
 
-    /* Section Title */
+    /* Skills Pill Bar */
+    .skills-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+    }
+
+    .skill-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.3rem 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--tag-border);
+      border-radius: 9999px;
+      color: #94a3b8;
+    }
+
+    /* Section Header */
+    .section-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: -1.75rem;
+    }
+
     .section-title {
-      align-self: flex-start;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.14em;
       font-weight: 700;
       color: #64748b;
-      margin-bottom: -1rem;
-      padding-left: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .section-line {
+      height: 1px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Projects Container */
+    .projects-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
     /* Project Card */
@@ -136,21 +186,22 @@
       border: 1px solid var(--card-border);
       backdrop-filter: blur(16px);
       border-radius: 20px;
-      padding: 1.75rem;
+      padding: 1.85rem;
       text-align: left;
       display: flex;
       flex-direction: column;
-      gap: 1.1rem;
+      gap: 1.15rem;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
     }
 
     .project-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(99, 102, 241, 0.35);
-      box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.25);
+      border-color: var(--card-border-hover);
+      box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2);
     }
 
-    .project-header {
+    .project-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -162,7 +213,8 @@
       color: #ffffff;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
+      letter-spacing: -0.01em;
     }
 
     .project-desc {
@@ -180,9 +232,9 @@
     .tag {
       font-size: 0.78rem;
       font-weight: 600;
-      padding: 0.3rem 0.7rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.3rem 0.75rem;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
       border-radius: 8px;
       color: #cbd5e1;
     }
@@ -190,8 +242,8 @@
     /* Action Buttons */
     .project-actions {
       display: flex;
-      gap: 0.85rem;
-      padding-top: 0.35rem;
+      gap: 0.75rem;
+      padding-top: 0.25rem;
       flex-wrap: wrap;
     }
 
@@ -199,9 +251,9 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.6rem 1.2rem;
+      padding: 0.55rem 1.15rem;
       border-radius: 10px;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s ease;
@@ -209,46 +261,71 @@
     }
 
     .btn-live {
-      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      background: linear-gradient(135deg, var(--primary), var(--primary-hover));
       color: #ffffff;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
     }
 
     .btn-live:hover {
-      box-shadow: 0 6px 22px rgba(99, 102, 241, 0.55);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
       transform: translateY(-2px);
     }
 
     .btn-repo {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.04);
       color: #e2e8f0;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .btn-repo:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.2);
       transform: translateY(-2px);
     }
 
-    /* Footer Social Links */
-    .links {
+    /* Footer & Connect */
+    footer {
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 2rem;
       display: flex;
-      gap: 1.2rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn-link {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
+      font-weight: 500;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      transition: color 0.2s ease;
+      gap: 0.45rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
     }
 
     .btn-link:hover {
       color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .copyright {
+      font-size: 0.8rem;
+      color: #64748b;
     }
   </style>
 </head>
@@ -256,71 +333,89 @@
   <div class="glow-bg"></div>
 
   <div class="container">
-    <!-- Status Badge -->
-    <div class="badge">
-      <span class="badge-dot"></span>
-      Portfolio is Under Construction
-    </div>
+    <!-- Hero Section -->
+    <header class="hero-section">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Portfolio is Under Construction
+      </div>
 
-    <!-- Hero Header -->
-    <div class="hero-header">
       <h1>Hi, I'm Phumipat Wongdaw 👋</h1>
-      <p class="subtitle">A Frontend Developer from Thailand</p>
+      <p class="subtitle">A passionate Frontend Developer from Thailand focused on crafting responsive, clean, and modern web experiences.</p>
+
+      <div class="skills-wrapper">
+        <span class="skill-pill">React</span>
+        <span class="skill-pill">Next.js</span>
+        <span class="skill-pill">TypeScript</span>
+        <span class="skill-pill">Tailwind CSS</span>
+        <span class="skill-pill">JavaScript</span>
+      </div>
+    </header>
+
+    <!-- Section Title with Divider -->
+    <div class="section-header">
+      <span class="section-title">Featured Projects</span>
+      <div class="section-line"></div>
     </div>
 
-    <!-- Section Title -->
-    <span class="section-title">Featured Projects</span>
+    <!-- Projects List -->
+    <div class="projects-list">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-name">🧮 React Calculator</span>
+        </div>
+        <p class="project-desc">A modern interactive calculator web application built with React. Featuring component-driven UI architecture and responsive layout.</p>
+        
+        <div class="tags">
+          <span class="tag">React</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">CSS</span>
+        </div>
 
-    <!-- Project Card -->
-    <div class="project-card">
-      <div class="project-header">
-        <span class="project-name">🧮 React Calculator</span>
-      </div>
-      <p class="project-desc">A modern interactive calculator web application built with React. Featuring component-driven UI architecture and responsive layout.</p>
-      
-      <div class="tags">
-        <span class="tag">React</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">CSS</span>
+        <div class="project-actions">
+          <a href="https://phumipat-2005.github.io/react-calculator" target="_blank" rel="noopener noreferrer" class="btn btn-live">
+            🌐 Live Demo ↗
+          </a>
+          <a href="https://github.com/Phumipat-2005/react-calculator" target="_blank" rel="noopener noreferrer" class="btn btn-repo">
+            💻 Source Code ↗
+          </a>
+        </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="project-actions">
-        <a href="https://phumipat-2005.github.io/react-calculator" target="_blank" rel="noopener noreferrer" class="btn btn-live">
-          🌐 Live Demo ↗
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-top">
+          <span class="project-name">📟 Parallel Lingo</span>
+        </div>
+        <p class="project-desc">A modern interactive language learning web application built with Next.js. Featuring component-driven UI architecture and responsive layout.</p>
+        
+        <div class="tags">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Tailwind CSS</span>
+        </div>
+
+        <div class="project-actions">
+          <a href="https://github.com/Phumipat-2005/parallel-lingo" target="_blank" rel="noopener noreferrer" class="btn btn-repo">
+            💻 Source Code ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer & Contact -->
+    <footer>
+      <div class="social-links">
+        <a href="https://github.com/Phumipat-2005" target="_blank" rel="noopener noreferrer" class="btn-link">
+          🐙 GitHub Profile ↗
         </a>
-        <a href="https://github.com/Phumipat-2005/react-calculator" target="_blank" rel="noopener noreferrer" class="btn btn-repo">
-          💻 Source Code ↗
+        <a href="mailto:Phumipat561101@gmail.com" class="btn-link">
+          ✉️ Get in Touch
         </a>
       </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <span class="project-name">📟Parallel Lingo</span>
-      </div>
-      <p class="project-desc">A modern interactive language learning web application built with Next.js. Featuring component-driven UI archi  tecture and responsive layout.</p>
-      
-      <div class="tags">
-        <span class="tag">Next.js</span>
-        <span class="tag">TypeScript</span>
-        <span class="tag">Tailwind CSS</span>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="project-actions">
-        <a href="https://github.com/Phumipat-2005/parallel-lingo" target="_blank" rel="noopener noreferrer" class="btn btn-repo">
-          💻 Source Code ↗
-        </a>
-      </div>
-    </div>
-
-    <!-- Footer Links -->
-    <div class="links">
-      <a href="https://github.com/Phumipat-2005" target="_blank" rel="noopener noreferrer" class="btn-link">
-        GitHub Profile ↗
-      </a>
-    </div>
+      <p class="copyright">© 2026 Phumipat Wongdaw. All rights reserved.</p>
+    </footer>
   </div>
 </body>
 </html>
